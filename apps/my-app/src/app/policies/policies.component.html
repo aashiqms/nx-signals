@@ -1,0 +1,14 @@
+<div>
+  <form [formGroup]="addForm" (ngSubmit)="onAdd()">
+    <input nz-input placeholder="Enter policy Name" formControlName="title" type="text" />
+
+  </form>
+
+  <div>Total: {{ store.policiesCount() }}</div>
+  <div *ngIf="store.isLoading()">Loading...</div>
+  <div *ngIf="store.error()">{{ store.error() }}</div>
+
+  <div *ngFor="let post of store.policies()">
+    {{ post.title }} <span (click)="store.removePolicy(post.id)">X</span>
+  </div>
+</div>
